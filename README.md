@@ -39,7 +39,9 @@ deactivate
 pip install -r requirements.txt
 ```
 ___
-### 4.Arborescence de l'application
+### 4.Arborescence de l'application ci-dessous :
+
+---
 <details>
 <summary>BadBoyRecords</summary>
 
@@ -57,4 +59,18 @@ ___
 - **requirements.txt**
 </details>
 
+---
+
 ### 5.Choix du modèle
+Nous avons un tableau venant du Notebook de Googlecolab ci-dessous:
+
+|Modèle| Score |
+|-----:|-----------|
+|  SVM  | 17.5% |
+| k-nn  | 29%   |
+| RF  | 59.2%   |
+| XGB  | 57.6%  |
+| Neural Net | 60.8% |
+| CNN  | 60.8% |
+
+Le modèle avec le plus haut score, [CNN](https://www.tensorflow.org/tutorials/images/cnn?hl=fr) à été choisit pour avoir des prédictions assez correctes.
