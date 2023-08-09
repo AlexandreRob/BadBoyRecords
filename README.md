@@ -47,6 +47,7 @@ ___
 
 - **app**
     - main.py
+    - toolbox.py
 - **Data**
     - genres_original
     - images_original
@@ -55,6 +56,7 @@ ___
 - **venv**
 - **BadBoyModel.keras**
 - **classification_music.ipynb**
+- **Dockerfile**
 - **README.md**
 - **requirements.txt**
 </details>
