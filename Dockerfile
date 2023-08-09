@@ -4,16 +4,16 @@ FROM python:3.9
 # Définir le répertoire de travail
 WORKDIR /app
 
+# Install dependencies
+RUN pip install wheel
+COPY ./requi_docker.txt requi_docker.txt
+RUN pip install --no-cache-dir -r requi_docker.txt
+EXPOSE 8501
+
 # Copier les fichiers du projet dans le répertoire de travail
-COPY app/main.py app/main.py
-COPY app/toolbox.py app/toolbox.py
-COPY Data/ Data/
-COPY BadBoyModel.keras BadBoyModel.keras
-COPY requirements.txt requirements.txt
+COPY . .
 
-# Installer les dépendances du projet
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+ENTRYPOINT ["streamlit", "run"]
 
-# Exécuter le script principal lors du démarrage du conteneur
-CMD ["python", "app/main.py"]
+# Run the Django development server
+CMD ["main.py"]
