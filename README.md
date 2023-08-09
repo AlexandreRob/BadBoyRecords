@@ -6,6 +6,8 @@
 3. [Activation de l'environnement virtuel](#3activation-de-lenvironement-virtuel)
     1. [Désactivation de l'environnement virtuel](#désactivation-de-lenvironement-virtuel) (Optionnel)
     2. [Installation des dépendances dans l'environnement virtuel](#installation-des-dépendances-dans-lenvironnement-virtuel)
+    3. [Lancement de l'application streamlit](#lancement-de-lapplication-streamlit)
+    4. [Lancement de l'application sous Docker]()
 4. [Arborescence de l'application](#4arborescence-de-lapplication)
 5. [Choix du modèle](#5choix-du-modèle)
 
@@ -37,6 +39,17 @@ deactivate
 ### Installation des dépendances dans l'environnement virtuel
 ```sh
 pip install -r requirements.txt
+```
+
+### Lancement de l'application streamlit
+```sh
+streamlit run .\app\main.py
+```
+
+### Lancement de l'application sous Docker
+Il sera accessible à cette adresse `http://localhost:8501/`
+```sh
+docker run -d -p 8501:8501 badboyrecords:image
 ```
 ___
 ### 4.Arborescence de l'application ci-dessous :
