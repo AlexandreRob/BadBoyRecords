@@ -7,7 +7,7 @@
     1. [Désactivation de l'environnement virtuel](#désactivation-de-lenvironement-virtuel) (Optionnel)
     2. [Installation des dépendances dans l'environnement virtuel](#installation-des-dépendances-dans-lenvironnement-virtuel)
     3. [Lancement de l'application streamlit](#lancement-de-lapplication-streamlit)
-    4. [Lancement de l'application sous Docker]()
+    4. [Lancement de l'application sous Docker](#lancement-de-lapplication-sous-docker)
 4. [Arborescence de l'application](#4arborescence-de-lapplication)
 5. [Choix du modèle](#5choix-du-modèle)
 
