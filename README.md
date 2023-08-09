@@ -58,7 +58,7 @@ ___
 - **classification_music.ipynb**
 - **Dockerfile**
 - **README.md**
-- **requirements.txt**
+- **requi_docker_.txt**
 </details>
 
 ---
