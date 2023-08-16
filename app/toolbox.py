@@ -5,8 +5,7 @@ import numpy as np
 from skimage.transform import resize
 
 
-
-model = keras.models.load_model('BadBoyModelV2.keras')
+model = keras.models.load_model('../BadBoyModelV2.keras')
 
 #Voici la liste des genres musicaux représentés dans la notre base de données, on en compte 10.
 genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 
