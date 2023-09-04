@@ -46,3 +46,6 @@ if uploaded_file is not None:
     print(f'The predicted class is: {predicted_class_name}')
     st.audio(bytes_data, format="audio/wav")
     st.write(predicted_class_name)
+
+
+    
