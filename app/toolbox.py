@@ -3,6 +3,8 @@ import tensorflow as tf
 import librosa
 import numpy as np
 from skimage.transform import resize
+import matplotlib.pyplot as plt
+import os
 
 
 model = keras.models.load_model('../BadBoyModelV2.keras')
@@ -48,4 +50,36 @@ def model_pred(audio_file):
     predicted_class_name = genres[predicted_class_index]
     predicted_class_name
 
-    return predicted_class_name
+    return predicted_class_name, mel_specs
+
+def create_song(file):
+    upload_directory = "folder_song"
+
+    if not os.path.exists(upload_directory):
+        os.makedirs(upload_directory)
+
+    file_name = os.path.join(upload_directory, file.name)
+
+    with open(file_name, "wb") as f:
+        f.write(file.read())
+        
+
+def create_img(mel_specs,name_pred):
+
+    upload_directory = "folder_img"
+    if not os.path.exists(upload_directory):
+        os.makedirs(upload_directory)
+        
+    # Creation img
+    plt.imshow(mel_specs[0], cmap="inferno")
+
+    # path
+    nom_fichier = f"folder_img/{name_pred}.png"
+
+    plt.savefig(nom_fichier)
+    plt.close()
+
+
+def new_train():
+    model = keras.models.load_model('../BadBoyModelV2.keras')
+    # model.fit(X_combined, y_combined, epochs=epochs, batch_size=batch_size, validation_split=validation_split)
