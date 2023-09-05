@@ -161,4 +161,7 @@ cython_debug/
 
 /Data
 
+/app/folder_img
+/app/folder_song
+
 class_alex.ipynb
