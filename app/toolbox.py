@@ -62,7 +62,7 @@ def create_song(file):
 
     with open(file_name, "wb") as f:
         f.write(file.read())
-        
+
 
 def create_img(mel_specs,name_pred):
 
