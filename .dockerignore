@@ -2,4 +2,7 @@ csv_results
 Data
 venv
 classification_music.ipynb
-requirements.txt
+
+BadBoyModelV2.1.keras
+BadBoyModel.keras
+*.ipynb
