@@ -39,13 +39,13 @@ def model_pred(audio_file):
     res = model.predict(X)
 
     # actual_best = 0
-    # result_label = ""
+    # result_genre = ""
 
     # for i in range(len(genres)):
     #     actual = res[0][i]
     #     if actual > actual_best:
     #         actual_best = actual
-    #         result_label = genres[i]
+    #         result_genre = genres[i]
 
     predicted_class_index = np.argmax(res[0])
     predicted_class_name = genres[predicted_class_index]
@@ -81,17 +81,22 @@ def create_img(mel_specs,name_pred):
     plt.close()
 
 
-def create_img_with_label(mel_specs, name_pred, label):
+def create_full_spectrogram(audio_file, name_pred, genre):
+    # Charger l'audio
+    y, sr = librosa.load(audio_file)
+    
+    # Calculer le spectrogramme
+    spect = librosa.feature.melspectrogram(y=y, sr=sr, n_fft=2048, hop_length=1024)
+    spect = librosa.power_to_db(spect, ref=np.max)
+    
     # Créer un répertoire pour sauvegarder les images du spectrogramme, s'il n'existe pas
-    upload_directory = f"folder_spectrogram/{label}"
+    upload_directory = f"folder_full_spectrogram/{genre}"
     if not os.path.exists(upload_directory):
         os.makedirs(upload_directory)
         
     # Créer et sauvegarder l'image du spectrogramme
     plt.figure(figsize=(10, 4))
-    plt.imshow(mel_specs[0], aspect='auto', cmap='inferno', origin='lower')
-    plt.title(f'Mel Spectrogram - {label}')
-    plt.colorbar(format='%+2.0f dB')
+    plt.imshow(spect, aspect='auto', cmap='inferno', origin='lower')
     plt.tight_layout()
     
     # Sauvegarder l'image
@@ -100,6 +105,7 @@ def create_img_with_label(mel_specs, name_pred, label):
     plt.close()
     
     return file_name  # Retourner le chemin du fichier image
+
 
 def new_train():
     model = keras.models.load_model('../BadBoyModelV2.keras')
