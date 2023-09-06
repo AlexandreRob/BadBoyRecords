@@ -9,7 +9,7 @@ COPY . .
 
 # Installer les dépendances du projet
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requi_docker.txt
+    pip install --no-cache-dir -r requirements.txt
 
 # Exposer le port 8501
 EXPOSE 8501
