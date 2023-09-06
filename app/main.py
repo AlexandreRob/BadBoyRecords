@@ -25,6 +25,7 @@ if uploaded_file is not None:
             st.write(f'Le genre selectionner est: {genre}.')
             if st.button('envoyer le resultat'):
                 create_img(predict[1],uploaded_file.name)
+                create_img_with_label(predict[1],uploaded_file.name, genre)
                 # create_song(uploaded_file)
         else:
             st.write("Selectionner un genre.")

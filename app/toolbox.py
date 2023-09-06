@@ -12,7 +12,7 @@ model = keras.models.load_model('BadBoyModelV2.keras')
 genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 
           'jazz', 'metal', 'pop', 'reggae', 'rock']
 
-#TODO: Créer une fonction qui génère et enregistre le spectrogramme entier du fichier uploadé
+
 
 def model_pred(audio_file):
 
@@ -80,6 +80,26 @@ def create_img(mel_specs,name_pred):
     plt.savefig(nom_fichier)
     plt.close()
 
+
+def create_img_with_label(mel_specs, name_pred, label):
+    # Créer un répertoire pour sauvegarder les images du spectrogramme, s'il n'existe pas
+    upload_directory = f"folder_spectrogram/{label}"
+    if not os.path.exists(upload_directory):
+        os.makedirs(upload_directory)
+        
+    # Créer et sauvegarder l'image du spectrogramme
+    plt.figure(figsize=(10, 4))
+    plt.imshow(mel_specs[0], aspect='auto', cmap='inferno', origin='lower')
+    plt.title(f'Mel Spectrogram - {label}')
+    plt.colorbar(format='%+2.0f dB')
+    plt.tight_layout()
+    
+    # Sauvegarder l'image
+    file_name = os.path.join(upload_directory, f"{name_pred}.png")
+    plt.savefig(file_name)
+    plt.close()
+    
+    return file_name  # Retourner le chemin du fichier image
 
 def new_train():
     model = keras.models.load_model('../BadBoyModelV2.keras')
