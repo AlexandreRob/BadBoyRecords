@@ -6,11 +6,13 @@ import matplotlib.pyplot as plt
 import os
 
 
-model = keras.models.load_model('../BadBoyModelV2.keras')
+model = keras.models.load_model('BadBoyModelV2.keras')
 
 #Voici la liste des genres musicaux représentés dans la notre base de données, on en compte 10.
 genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 
           'jazz', 'metal', 'pop', 'reggae', 'rock']
+
+#TODO: Créer une fonction qui génère et enregistre le spectrogramme entier du fichier uploadé
 
 def model_pred(audio_file):
 
