@@ -7,20 +7,24 @@ st.write("""
     # Bad Boy Records
 """)
 
-uploaded_file = st.file_uploader("Upload an song")
+uploaded_file = st.file_uploader("Upload an song", type=["wav"])
 if uploaded_file is not None:
-    bytes_data = uploaded_file.read()
-
-    # Créer un fichier temporaire pour enregistrer les données binaires du fichier audio
-    temp_audio_file = tempfile.NamedTemporaryFile(delete=False)
-    temp_audio_file.write(bytes_data)
-    temp_audio_file.close()
+    st.audio(uploaded_file, format="audio/wav")
     
-    predicted_class_name = model_pred(temp_audio_file.name)
+    predict = model_pred(uploaded_file)
+        
+    st.write(predict[0])
 
-    # Supprimer le fichier temporaire
-    os.remove(temp_audio_file.name)
-    
+    agree = st.checkbox("Si la prédiction n'est pas bonne clique")
 
-    st.audio(bytes_data, format="audio/wav")
-    st.write(predicted_class_name)
+    if agree:
+        genre = st.radio("Choisir à quel genre appartient la musique", genres)
+        
+        if genres :
+            
+            st.write(f'Le genre selectionner est: {genre}.')
+            if st.button('envoyer le resultat'):
+                create_img(predict[1],uploaded_file.name)
+                # create_song(uploaded_file)
+        else:
+            st.write("Selectionner un genre.")
