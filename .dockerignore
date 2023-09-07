@@ -5,5 +5,5 @@ classification_music.ipynb
 /app/folder_img
 folder_img/*
 /app/folder_song
-*.keras
+
 *.ipynb
