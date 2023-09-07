@@ -1,12 +1,13 @@
 import keras
 import librosa
+import soundfile as sf
 import numpy as np
 from skimage.transform import resize
 import matplotlib.pyplot as plt
 import os
 
 
-model = keras.models.load_model('/app/BadBoyModelV2.h5')
+model = keras.models.load_model('./BadboyModelV2.h5')
 
 #Voici la liste des genres musicaux représentés dans la notre base de données, on en compte 10.
 genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 
@@ -53,20 +54,31 @@ def model_pred(audio_file):
 
     return predicted_class_name, mel_specs
 
-def create_song(file):
-    upload_directory = "folder_song"
 
+import os
+import soundfile as sf
+
+def save_song(audio_file, name_pred, genre):
+    # Charger l'audio
+    y, sr = librosa.load(audio_file, sr=None)  # sr=None garantit que le taux d'échantillonnage d'origine est conservé
+    
+    # Créer un répertoire pour sauvegarder les fichiers audio, s'il n'existe pas
+    upload_directory = f"folder_audio/{genre}"
     if not os.path.exists(upload_directory):
         os.makedirs(upload_directory)
+        
+    # Construire le chemin du fichier où l'audio sera sauvegardé
+    file_name = os.path.join(upload_directory, f"{name_pred}.wav")
+    
+    # Utiliser soundfile pour enregistrer l'audio au format WAV
+    sf.write(file_name, y, sr)
+    
+    return file_name  # Retourner le chemin du fichier audio
 
-    file_name = os.path.join(upload_directory, file.name)
 
-    with open(file_name, "wb") as f:
-        f.write(file.read())
 
 
 def create_img(mel_specs,name_pred):
-
     upload_directory = "folder_img"
     if not os.path.exists(upload_directory):
         os.makedirs(upload_directory)

@@ -12,7 +12,7 @@ if uploaded_file is not None:
     st.audio(uploaded_file, format="audio/wav")
     
     # Créer un fichier temporaire pour sauvegarder l'audio uploadé
-    tfile = tempfile.NamedTemporaryFile(delete=False) 
+    tfile = tempfile.NamedTemporaryFile(delete=False)
     tfile.write(uploaded_file.read())
     
     predict = model_pred(tfile.name)  # Utilisez le nom du fichier temporaire ici
@@ -27,5 +27,8 @@ if uploaded_file is not None:
         if genre:  # Changez ceci de `if genres:` à `if genre:`
             st.write(f'Le genre selectionner est: {genre}.')
             if st.button('envoyer le resultat'):
+                save_song(tfile.name, uploaded_file.name, genre)
                 create_img(predict[1], uploaded_file.name)
                 create_full_spectrogram(tfile.name, uploaded_file.name, genre)  # Utilisez le nom du fichier temporaire ici
+                
+        tfile.close()  # Fermer le fichier temporaire
