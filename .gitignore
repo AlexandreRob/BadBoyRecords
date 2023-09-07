@@ -160,6 +160,7 @@ cython_debug/
 #.idea/
 
 /Data
+/Dataset
 
 /app/folder_img
 folder_img/*
