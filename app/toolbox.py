@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import os
 
 
-model = keras.models.load_model('../BadBoyModelV2.keras')
+model = keras.models.load_model('/app/BadBoyModelV2.h5')
 
 #Voici la liste des genres musicaux représentés dans la notre base de données, on en compte 10.
 genres = ['blues', 'classical', 'country', 'disco', 'hiphop', 
@@ -61,7 +61,7 @@ def create_song(file):
 
     with open(file_name, "wb") as f:
         f.write(file.read())
-        
+
 
 def create_img(mel_specs,name_pred):
 
