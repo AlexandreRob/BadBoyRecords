@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_6c972b2a6c304089af4524b8ff819a69 }}/alexandre974/appbadboy:${{ github.sha }}
+        tags: ${{ secrets.AzureAppService_ContainerUsername_6c972b2a6c304089af4524b8ff819a69 }}/appbadboy:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'appbadboy'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_397ee73b23c24f9aabf0482de0235740 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_6c972b2a6c304089af4524b8ff819a69 }}/alexandre974/appbadboy:${{ github.sha }}'
+        images: '${{ secrets.AzureAppService_ContainerUsername_6c972b2a6c304089af4524b8ff819a69 }}/appbadboy:${{ github.sha }}'
