@@ -16,7 +16,6 @@ genres = ['blues', 'classical', 'country', 'disco', 'hiphop',
 
 
 def model_pred(audio_file):
-
     y, sr = librosa.load(audio_file)
    
     mel_specs = []
@@ -55,9 +54,6 @@ def model_pred(audio_file):
     return predicted_class_name, mel_specs
 
 
-import os
-import soundfile as sf
-
 def save_song(audio_file, name_pred, genre):
     # Charger l'audio
     y, sr = librosa.load(audio_file, sr=None)  # sr=None garantit que le taux d'échantillonnage d'origine est conservé
@@ -74,8 +70,6 @@ def save_song(audio_file, name_pred, genre):
     sf.write(file_name, y, sr)
     
     return file_name  # Retourner le chemin du fichier audio
-
-
 
 
 def create_img(mel_specs,name_pred):
