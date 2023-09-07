@@ -1,10 +1,11 @@
-import keras
-import librosa
-import soundfile as sf
-import numpy as np
-from skimage.transform import resize
-import matplotlib.pyplot as plt
 import os
+import keras
+import shutil
+import librosa
+import numpy as np
+import soundfile as sf
+import matplotlib.pyplot as plt
+from skimage.transform import resize
 
 
 model = keras.models.load_model('./BadboyModelV2.h5')
@@ -69,10 +70,40 @@ def save_song(audio_file, name_pred, genre):
     # Utiliser soundfile pour enregistrer l'audio au format WAV
     sf.write(file_name, y, sr)
     
+    # Enregistrer une copie du fichier audio dans la structure de dossiers "Data/genres_original"
+    save_to_genre_folder(file_name, f"{name_pred}.wav", genre)
+
     return file_name  # Retourner le chemin du fichier audio
 
 
-def create_img(mel_specs,name_pred):
+def save_to_genre_folder(audio_file_path, file_name, genre):
+    # Chemin de base pour le dossier "Data"
+    base_path = "Data"
+    
+    # Chemin pour le dossier "genres_original"
+    genres_original_path = os.path.join(base_path, "genres_original")
+    
+    # Chemin pour le genre spécifique
+    genre_path = os.path.join(genres_original_path, genre)
+    
+    # Vérifier et créer les dossiers s'ils n'existent pas
+    if not os.path.exists(base_path):
+        os.makedirs(base_path)
+    if not os.path.exists(genres_original_path):
+        os.makedirs(genres_original_path)
+    if not os.path.exists(genre_path):
+        os.makedirs(genre_path)
+    
+    # Construire le chemin complet où le fichier sera sauvegardé
+    destination_path = os.path.join(genre_path, file_name)
+    
+    # Copier le fichier audio dans le dossier de destination
+    shutil.copy2(audio_file_path, destination_path)
+    
+    return destination_path  # Retourner le chemin du fichier audio copié
+
+
+def create_img(mel_specs, name_pred):
     upload_directory = "folder_img"
     if not os.path.exists(upload_directory):
         os.makedirs(upload_directory)
