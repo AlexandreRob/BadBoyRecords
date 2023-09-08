@@ -34,3 +34,16 @@ LICENSE
 README.md
 
 *.ipynb
+
+/app/folder_img
+folder_img/*
+/app/folder_song
+/app/Data
+/app/folder_audio/*
+/app/folder_full_spectrogram/*
+/folder_img
+folder_img/*
+/folder_song
+/Data
+/folder_audio/*
+/folder_full_spectrogram/*
