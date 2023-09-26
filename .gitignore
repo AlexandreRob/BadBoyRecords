@@ -165,5 +165,8 @@ cython_debug/
 /app/folder_img
 folder_img/*
 /app/folder_song
+folder_audio*
+folder_full_spectrogram/*
 
 class_alex.ipynb
+*.wav
