@@ -170,3 +170,4 @@ folder_full_spectrogram/*
 
 class_alex.ipynb
 *.wav
+BadBoyModelV3.h5
